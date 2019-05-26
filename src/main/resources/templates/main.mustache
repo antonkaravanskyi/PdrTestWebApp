@@ -1,15 +1,13 @@
 <html>
 
 <body>
-<div>Список сообщений</div>
 <form method="post" action="filter">
     <input type="text" name="filter">
-    <button type="submit">Найти</button>
 </form>
 {{#tests}}
     <div>
-        <b>{{id}}</b>
-        <span>{{text}}</span>
+        <b>{{testId}}</b>
+        <span>{{testName}}</span>
     </div>
 {{/tests}}
 </body>
