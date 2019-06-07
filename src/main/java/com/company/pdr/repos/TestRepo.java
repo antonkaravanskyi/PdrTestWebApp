@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface TestRepo extends CrudRepository <Test, Long>{
-    List<Test> findByTestName(String testName);
 
+    List<Test> findByTestName(String testName);
 }

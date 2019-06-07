@@ -1,17 +1,21 @@
 package com.company.pdr.domain;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "task")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "task_id")
     private Integer taskId;
+
     @Column(name = "task_name")
     private String taskName;
+
     @Column(name = "question")
     private String question;
 
@@ -20,16 +24,17 @@ public class Task {
     private Test test;
 
     @OneToMany(mappedBy="task")
-    private Set<Answer> answers;
+    private List<Answer> answers = new ArrayList();
 
     public Task() {
 
     }
 
-    public Task(String taskName, String question, Test test, Set<Answer> answers) {
-        this.taskName = taskName;
-        this.question = question;
-        this.test = test;
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 
@@ -64,4 +69,6 @@ public class Task {
     public void setQuestion(String question) {
         this.question = question;
     }
+
+
 }

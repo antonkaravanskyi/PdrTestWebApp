@@ -6,14 +6,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "answer")
 public class Answer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "answer_id")
-    private Integer answerId;
     @Column(name = "answer_name")
     private String answerName;
-    @Column(name = "ans")
-    private boolean ans;
+
+    @Column(name = "correct")
+    private boolean correct;
 
     @ManyToOne
     @JoinColumn(name = "task_id", nullable=false)
@@ -23,18 +23,10 @@ public class Answer {
 
     }
 
-    public Answer(String answerName, boolean ans, Task task) {
+    public Answer(String answerName, boolean correct, Task task) {
         this.answerName = answerName;
-        this.ans = ans;
+        this.correct = correct;
         this.task = task;
-    }
-
-    public Integer getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(Integer answerId) {
-        this.answerId = answerId;
     }
 
     public String getAnswerName() {
@@ -45,12 +37,12 @@ public class Answer {
         this.answerName = answerName;
     }
 
-    public boolean isAns() {
-        return ans;
+    public boolean isCorrect() {
+        return correct;
     }
 
-    public void setAns(boolean ans) {
-        this.ans = ans;
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 
     public Task getTask() {

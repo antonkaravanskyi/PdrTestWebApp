@@ -5,7 +5,6 @@ import com.company.pdr.repos.TestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -15,16 +14,13 @@ public class MainController {
     @Autowired
     private TestRepo testRepo;
 
-    @GetMapping("/greeting")
-    public String greeting(
-            @RequestParam(name="name", required=false, defaultValue="World") String name,
-            Map<String, Object> model
-    ) {
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+
+    @GetMapping("/tests")
     public String main(Map<String, Object> model) {
         Iterable<Test> tests = testRepo.findAll();
 
