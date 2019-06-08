@@ -13,11 +13,16 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
+
     @Autowired
     private UserRepo userRepo;
 
-
     @GetMapping("/registration")
+    public String reg() {
+        return "registr";
+    }
+
+    @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
         User userFromDb = userRepo.findByUsrName(user.getUsrName());
 

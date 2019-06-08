@@ -1,5 +1,4 @@
 <#import "parts/common.ftl" as c>
-<#import "login.ftl" as l>
 
 <@c.page>
     <form action="/tests" method="get">

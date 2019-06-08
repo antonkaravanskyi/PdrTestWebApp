@@ -25,7 +25,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-
     public User() {
     }
 

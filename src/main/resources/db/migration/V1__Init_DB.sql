@@ -20,7 +20,7 @@ correct boolean,
 foreign key (task_id) references task(task_id));
 
 create table usr (
-usr_id int8 not null,
+usr_id serial not null,
 usr_name varchar(50),
 password varchar(50),
 primary key (usr_id));
