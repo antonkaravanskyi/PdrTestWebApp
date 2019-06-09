@@ -5,6 +5,7 @@ import com.company.pdr.repos.TestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
@@ -14,7 +15,7 @@ public class MainController {
 
     @Autowired
     private TestRepo testRepo;
-   
+
     @PostMapping("/tests")
     public String greeting(Map<String, Object> model) {
         return "main";
@@ -25,6 +26,15 @@ public class MainController {
         Iterable<Test> tests = testRepo.findAll();
 
         model.put("tests", tests);
+
+        return "main";
+    }
+
+    @GetMapping("/test/{testName}")
+    public String getTests(@PathVariable("testName") String testName, Map<String, Object> model) {
+        Test test = testRepo.findByTestName(testName).orElse(null);
+
+        model.put("test", test);
 
         return "main";
     }

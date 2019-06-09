@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-    <form action="/tests" method="get">
+    <form action="/tests" method="get" id="mainForm">
         <div class="form-group">
             <label for="exampleFormControlSelect1">Варіанти тестів</label>
             <div class="form-group">
@@ -14,9 +14,14 @@
             </div>
         </div>
 
-        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Розпочати тест</button>
-        <form>
+
+        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Розпочати тест</button>
+        <form method="get" id="firstForm">
             <p>
+                <#if test??>
+                                    <label>${test}</label>
+                </#if>
             <div class="collapse" id="collapseExample">
                 <ul class="list-group">
                     <#list tests as test>
@@ -41,8 +46,16 @@
                         </#list>
                     </#list>
                 </ul>
+                <button type="submit">BUTTON</button>
             </div
             </p>
         </form>
     </form>
 </@c.page>
+<script>
+    let selector = document.getElementById('testId');
+    let firstForm = document.getElementById('firstForm');
+    selector.addEventListener('change', function () {
+        firstForm.setAttribute('action', `/test/${selector.value}`);
+    });
+</script>
