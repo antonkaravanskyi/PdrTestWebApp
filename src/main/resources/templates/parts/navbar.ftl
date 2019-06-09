@@ -15,9 +15,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/registration">Реєстрація</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/tests">Тести</a>
-            </li>
         </ul>
         <div class="navbar-text mr-3">${name}</div>
         <@l.logout />

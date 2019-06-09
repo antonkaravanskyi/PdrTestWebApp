@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <button class="btn btn-dark" type="submit">
+        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Розпочати тест
         </button>
 

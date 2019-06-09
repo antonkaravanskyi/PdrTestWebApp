@@ -1,47 +1,66 @@
 package com.company.pdr.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name = "usr")
-public class User {
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usr_id")
-    private Long usrId;
-
-    @Column(name = "usr_name")
-    private String usrName;
-
-    @Column(name = "password")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String username;
     private String password;
-
-    @Transient
-    private String passwordConfirm;
+    private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "usr_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    public User() {
+    public Long getId() {
+        return id;
     }
 
-    public Long getUsrId() {
-        return usrId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUsrId(Long usrId) {
-        this.usrId = usrId;
+    public String getUsername() {
+        return username;
     }
 
-    public String getUsrName() {
-        return usrName;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setUsrName(String usrName) {
-        this.usrName = usrName;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isActive();
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
     }
 
     public String getPassword() {
@@ -52,12 +71,12 @@ public class User {
         this.password = password;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Set<Role> getRoles() {

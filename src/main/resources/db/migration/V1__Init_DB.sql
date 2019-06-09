@@ -20,12 +20,13 @@ correct boolean,
 foreign key (task_id) references task(task_id));
 
 create table usr (
-usr_id serial not null,
-usr_name varchar(50),
+id serial not null,
+username varchar(50),
 password varchar(50),
-primary key (usr_id));
+active boolean,
+primary key (id));
 
-create table usr_role(
-usr_id int4 not null,
+create table user_role(
+user_id int4 not null,
 roles VARCHAR (10),
-foreign key (usr_id) references usr(usr_id));
+foreign key (user_id) references usr(id));
