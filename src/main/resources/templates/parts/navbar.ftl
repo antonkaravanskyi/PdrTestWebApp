@@ -8,15 +8,19 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Авторизація</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/registration">Реєстрація</a>
-            </li>
-        </ul>
-        <div class="navbar-text mr-3">${name}</div>
-        <@l.logout />
+        <#if name?has_content>
+            <div class="navbar-text mr-3">${name}</div>
+            <@l.logout />
+        <#else>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Авторизація</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Реєстрація</a>
+                </li>
+            </ul>
+        </#if>
+
     </div>
 </nav>

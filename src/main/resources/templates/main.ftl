@@ -14,35 +14,35 @@
             </div>
         </div>
 
-        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Розпочати тест
-        </button>
-
-        <div class="collapse" id="collapseExample">
-            <ul class="list-group">
-                <#list tests as test>
-                    <#list test.tasks as task>
-                        <label class="form-check-label" for="gridRadios1">${task.question}
-                        </label>
-                    <li class="list-group-item">${task.taskName}
-                        <fieldset class="form-group">
-                            <div class="row">
-                                <legend class="col-form-label col-sm-2 pt-0"></legend>
-                                <div class="col-sm-10">
-                                    <#list task.answers as answer>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                        <label class="form-check-label" for="gridRadios1">${answer.answerName}
-                                        </label>
+        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Розпочати тест</button>
+        <form>
+            <p>
+            <div class="collapse" id="collapseExample">
+                <ul class="list-group">
+                    <#list tests as test>
+                        <#list test.tasks as task>
+                            <b><li class="list-group-item">${test.testName} ${task.taskName}</b>
+                            <br>
+                            <label class="form-check-label" for="gridRadios1">${task.question}</label>
+                            <fieldset class="form-group">
+                                <div class="row">
+                                    <legend class="col-form-label col-sm-2 pt-0"></legend>
+                                    <div class="col-sm-10">
+                                        <#list task.answers as answer>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                <label class="form-check-label" for="gridRadios1">${answer.answerName}</label>
+                                            </div>
+                                        </#list>
                                     </div>
-                                    </#list>
                                 </div>
-                            </div>
-                        </fieldset>
-                    </li>
+                            </fieldset>
+                            </li>
+                        </#list>
                     </#list>
-                </#list>
-            </ul>
-        </div>
+                </ul>
+            </div
+            </p>
+        </form>
     </form>
 </@c.page>
