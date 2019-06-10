@@ -30,10 +30,12 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/test/{testName}")
-    public String getTests(@PathVariable("testName") String testName, Map<String, Object> model) {
-        Test test = testRepo.findByTestName(testName).orElse(null);
+    @GetMapping("/tests/{testId}")
+    public String getTests(@PathVariable("testId") Integer testId, Map<String, Object> model) {
+        Test test = testRepo.findByTestId(testId).orElse(null);
 
+        Iterable<Test> tests = testRepo.findAll();
+        model.put("tests", tests);
         model.put("test", test);
 
         return "main";
